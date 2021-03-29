@@ -21,20 +21,26 @@ public class UIManager : MonoBehaviour
             StartCoroutine(PopUpImege());
         }
     }
+
+    // Open PopUp Menu 
+    IEnumerator PopUpImege()
+    {
+        yield return new WaitForSeconds(2f);
+        popUpImage.SetActive(true);
+    }
+
+    // Button OnClick
     public void PlayAgain()
     {
         SceneManager.LoadScene(builtIndex);
     }
 
+    // Button OnClick
     public void NextLevel()
     {
         SceneManager.LoadScene(builtIndex+1);
     }
 
 
-    IEnumerator PopUpImege()
-    {
-        yield return new WaitForSeconds(2f);
-        popUpImage.SetActive(true);
-    }
+    
 }

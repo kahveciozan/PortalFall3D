@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public Animator animator;
-    public Vector3 startSpeed;
 
+    public Vector3 startSpeed = new Vector3(-25,0,0);
+
+    /* -- Animator Variables --- */
+    public Animator animator;
+
+
+    /* --- Variables for Markers --- */
     public GameObject marker1, marker2;
     private float arrowOffsetY = 0;
     public float arrowSpeed = 0.6f;
@@ -17,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     public ParticleSystem particleBomb;
     public GameObject portal1, portal2;
 
+    /* --- Health Bar Variable --- */
     public Image healthBar;
 
     public bool isFalling = false, isDead = false, isTap = true, isWin = false;
@@ -26,6 +32,7 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    // Player runs before he falls
     private void StartSpeedControl()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsTag("Run"))
@@ -77,6 +84,7 @@ public class PlayerScript : MonoBehaviour
         {
             StartFallAnimation();
             isTap = true;
+
             // Tap yoksa marker2 pos marker1 olsun
             marker2.transform.position = marker1.transform.position;
             arrowOffsetY = 0;
@@ -119,23 +127,24 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.collider.CompareTag("Win") )
         {
-           
+           // TO DO (Win Sound)
             isFalling = false;
 
             if (!isDead)
             {
-                Debug.Log("KAZANDINIZ");
+                Debug.Log("KAZANDIN");
                 WinAnimation();
                 isWin = true;
             }  
             else
                 Debug.Log("ÖLDÜN TEKRAR DENE");
 
-
         }
 
     }
 
+
+    /* ---------------- Animations Controls ------------------------*/
     private void StartTapAnimation()
     {
         animator.SetBool("isFalling",false);
@@ -152,12 +161,7 @@ public class PlayerScript : MonoBehaviour
 
     private void WinAnimation()
     {
-
         animator.SetBool("isWin", true);
-
     }
-
-
-
 
 } // Class

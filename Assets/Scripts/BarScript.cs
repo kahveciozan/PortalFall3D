@@ -20,6 +20,11 @@ public class BarScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        SetEnergyBar();
+    }
+
+    private void SetEnergyBar()
+    {
         if (Input.GetButton("Fire1") && ps.isFalling)
         {
             EnergyBar.fillAmount -= 1f / waitTime * Time.fixedDeltaTime;
@@ -38,6 +43,4 @@ public class BarScript : MonoBehaviour
         Text levelText = GameObject.Find("LevelText").GetComponent<Text>();
         levelText.text = "Level " + (1 + buildIndex).ToString();
     }
-
-
 }
